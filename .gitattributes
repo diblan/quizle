@@ -1,0 +1,47 @@
+# --- General line endings: use LF everywhere ---
+* text=auto eol=lf
+
+# --- Java source files ---
+*.java      text
+*.xml       text
+*.properties    text
+*.gradle    text
+*.groovy    text
+*.yml       text
+*.yaml      text
+
+# --- Shell scripts ---
+*.sh    text eol=lf
+
+# --- Batch scripts (Windows-specific) ---
+*.bat   text eol=crlf
+*.cmd   text eol=crlf
+
+# --- Markdown and documentation ---
+*.md    text
+*.txt   text
+
+# --- Ignore binaries (no eol normalization) ---
+*.jar   binary
+*.war   binary
+*.ear   binary
+*.zip   binary
+*.tar   binary
+*.gz    binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.pdf   binary
+
+# --- IntelliJ project files ---
+*.iml   text
+*.ipr   text
+*.iws   text
+
+# --- Git ignore and attributes themselves ---
+.gitattributes  text
+.gitignore      text
+
+# --- Maven Wrapper ---
+/mvnw   text eol=lf
+*.cmd   text eol=crlf
