@@ -44,3 +44,5 @@ build/
 *.key
 *.pem
 *.crt
+
+*.zip
