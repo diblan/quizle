@@ -2,6 +2,7 @@ package com.blanchaert.quizle.domain.user;
 
 import com.blanchaert.quizle.dto.UserRegistrationRequest;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,7 +15,8 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class UserServiceTest {
+@Tag("unit")
+public class UserServiceUnitTest {
 
     private UserRepository userRepository;
     private BCryptPasswordEncoder passwordEncoder;
