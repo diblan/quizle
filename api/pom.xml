@@ -133,6 +133,25 @@
 		</profile>
 
 		<profile>
+			<id>cockroachdb</id>
+			<properties>
+				<spring.profiles.active>cockroachdb</spring.profiles.active>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>org.postgresql</groupId>
+					<artifactId>postgresql</artifactId>
+					<version>${postgresql.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.flywaydb</groupId>
+					<artifactId>flyway-database-postgresql</artifactId>
+					<version>${flyway.version}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+
+		<profile>
 			<id>mariadb</id>
 			<properties>
 				<spring.profiles.active>mariadb</spring.profiles.active>

@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mariadb://db.blanchaert.com:3306/mariadb
+    url: ${MARIADB_URL}
     username: ${MARIADB_USER}
     password: ${MARIADB_PASSWORD}
     driver-class-name: org.mariadb.jdbc.Driver

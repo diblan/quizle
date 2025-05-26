@@ -7,6 +7,7 @@ CREATE TABLE users (
     username VARCHAR(255) NOT NULL UNIQUE,
     email VARCHAR(255) NOT NULL UNIQUE,
     role VARCHAR(50) NOT NULL, -- USER, ADMIN
+    password_hash VARCHAR(60) NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
