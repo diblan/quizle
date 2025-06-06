@@ -15,17 +15,19 @@ public class UserService {
     private final BCryptPasswordEncoder passwordEncoder;
 
     public void registerUser(UserRegistrationRequest request) {
+        String normalizedEmail = request.getEmail().trim().toLowerCase(Locale.ROOT);
+
         if (userRepository.existsByUsername(request.getUsername())) {
             throw new UserAlreadyExistsException("Username already taken");
         }
 
-        if (userRepository.existsByEmail(request.getEmail())) {
+        if (userRepository.existsByEmail(normalizedEmail)) {
             throw new UserAlreadyExistsException("Email already in use");
         }
 
         User user = new User();
         user.setUsername(request.getUsername());
-        user.setEmail(request.getEmail().trim().toLowerCase(Locale.ROOT));
+        user.setEmail(normalizedEmail);
         user.setRole(Role.USER);
         user.setPasswordHash(passwordEncoder.encode(request.getPassword()));
 
