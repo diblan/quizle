@@ -1,6 +1,7 @@
 package com.blanchaert.quizle.domain.user;
 
 import com.blanchaert.quizle.dto.UserRegistrationRequest;
+import com.blanchaert.quizle.exception.UserAlreadyExistsException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -63,11 +64,11 @@ public class UserServiceUnitTest {
 
         when(userRepository.existsByUsername("existinguser")).thenReturn(true);
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () ->
+        UserAlreadyExistsException exception = assertThrows(UserAlreadyExistsException.class, () ->
                 userService.registerUser(request)
         );
 
-        assertEquals("User with same username or email already exists", exception.getMessage());
+        assertEquals("Username already taken", exception.getMessage());
         verify(userRepository, never()).save(any());
     }
 
@@ -81,11 +82,29 @@ public class UserServiceUnitTest {
         when(userRepository.existsByUsername("newuser")).thenReturn(false);
         when(userRepository.existsByEmail("existing@example.com")).thenReturn(true);
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () ->
+        UserAlreadyExistsException exception = assertThrows(UserAlreadyExistsException.class, () ->
                 userService.registerUser(request)
         );
 
-        assertEquals("User with same username or email already exists", exception.getMessage());
+        assertEquals("Email already in use", exception.getMessage());
+        verify(userRepository, never()).save(any());
+    }
+
+    @Test
+    void registerUser_checksEmailExistenceAfterNormalization() {
+        UserRegistrationRequest request = new UserRegistrationRequest();
+        request.setUsername("anotheruser");
+        request.setEmail(" Existing@Example.com \n");
+        request.setPassword("123");
+
+        when(userRepository.existsByUsername("anotheruser")).thenReturn(false);
+        when(userRepository.existsByEmail("existing@example.com")).thenReturn(true);
+
+        UserAlreadyExistsException exception = assertThrows(UserAlreadyExistsException.class, () ->
+                userService.registerUser(request)
+        );
+
+        assertEquals("Email already in use", exception.getMessage());
         verify(userRepository, never()).save(any());
     }
 }

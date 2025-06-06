@@ -2,6 +2,7 @@ package com.blanchaert.quizle.controller;
 
 import com.blanchaert.quizle.domain.user.UserService;
 import com.blanchaert.quizle.dto.UserRegistrationRequest;
+import com.blanchaert.quizle.exception.UserAlreadyExistsException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,7 +24,7 @@ public class UserController {
         try {
             userService.registerUser(request);
             return ResponseEntity.ok("User registered successfully");
-        } catch (IllegalArgumentException ex) {
+        } catch (UserAlreadyExistsException ex) {
             return ResponseEntity.badRequest().body(ex.getMessage());
         }
     }
