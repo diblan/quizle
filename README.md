@@ -6,9 +6,10 @@ Quizle is a self-hosted quiz platform inspired by daily puzzle games like **Word
 
 * **User registration** – register new players using a simple form.
 * **Question practice APIs** – create and answer basic questions and fixed-size set-answer questions such as “Name the layers of the OSI model.”
-* **Planned:** create quizzes with multiple question types and track results.
+* **Question set APIs** – create quiz-style sets that combine multiple ordered questions, such as a basic OSI layer-number question followed by a complete-list OSI layers question.
+* **Planned:** track quiz-style set results across multiple questions.
 
-The database schema already includes tables for quizzes, questions and answers to support future development.
+The database schema includes tables for standalone questions, question sets and existing quiz/answer groundwork for future attempt tracking.
 
 ## Technologies Used
 
