@@ -1,0 +1,8 @@
+package com.blanchaert.quizle.domain.question;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.UUID;
+
+public interface SetAnswerQuestionAttemptRepository extends JpaRepository<SetAnswerQuestionAttempt, UUID> {
+}
