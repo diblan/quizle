@@ -46,7 +46,7 @@ CREATE TABLE multiple_choice_questions (
 -- Options for MCQ questions
 CREATE TABLE multiple_choice_options (
   id          BIGSERIAL PRIMARY KEY,
-  question_id BIGINT NOT NULL REFERENCES question_multiple_choice(question_id) ON DELETE CASCADE,
+  question_id BIGINT NOT NULL REFERENCES multiple_choice_questions(question_id) ON DELETE CASCADE,
   option_text TEXT NOT NULL,
   is_correct  BOOLEAN NOT NULL DEFAULT FALSE
 );
